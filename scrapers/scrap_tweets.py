@@ -4,15 +4,16 @@
 import tweepy
 import codecs
 
+
 class ExtractAuthFeatures(object):
 
     debug = False
 
     def __init__(self):
-        self.consumer_key = "omFBeHFvgvWoEmadTvH7WAJQz"
-        self.consumer_secret = "HZAQjfWoJu1ByNVo8nCav3ARgFCKOGWpObosoPqa0FYRwVonYm"
-        self.access_token = "4508853492-zg2va8tJITgeZzzNsGGJkcncIZCErNvbCg21mT9"
-        self.access_token_secret = "lUikDtvcQHgoCKTnb6paaNtay4u6QqkJS55ytBu6epnZH"
+        self.consumer_key = "fWpDVeJaGr3QRSVBvLal25HLF"
+        self.consumer_secret = "YbfqCFoC9yqfwmedq4XYMnbH1PrWBpsNlWNUYyzX87iKJKRsCZ"
+        self.access_token = "4508853492-lq0VCRdPWCMuO8ewhQjVbZhSVfSNxhk5oPXaWB8"
+        self.access_token_secret = "1IPWk2uZhhldozhzJKAnenSvSaD6SmrWRzpjgBE4xuw9M"
         self.url_domain = []
 
     def get_tweets_by_user(self, keyword):
@@ -26,6 +27,14 @@ class ExtractAuthFeatures(object):
         auth.set_access_token(self.access_token, self.access_token_secret)
         api = tweepy.API(auth)
         return tweepy.Cursor(api.search, q=keyword).items(max_tweets)
+
+    def get_tweets_by_id(self, id_of_tweet):
+        auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
+        auth.set_access_token(self.access_token, self.access_token_secret)
+        api = tweepy.API(auth)
+        return api.get_status(id_of_tweet)
+
+
 
 
 def main():
